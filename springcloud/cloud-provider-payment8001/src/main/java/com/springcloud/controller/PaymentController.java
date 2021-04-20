@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @Slf4j
@@ -39,7 +40,7 @@ public class PaymentController {
     }
 
     @GetMapping("/payment/get/{id}")
-    public  CommonResult getId( @PathVariable("id") Long id){
+    public  CommonResult<Payment> getId( @PathVariable("id") Long id){
 
         Payment payment = paymentService.getId(id);
         log.info("============123=========");
@@ -66,6 +67,22 @@ public class PaymentController {
     @GetMapping("/payment/lb")
     public String getPaymentLb(){
 
+        return serverPort;
+    }
+
+    /**
+     *
+     *模拟调用超时
+     * @return
+     */
+    @GetMapping("/payment/feign/timeout")
+    public String paymentFeignTimeout(){
+
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return serverPort;
     }
 

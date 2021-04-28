@@ -1,13 +1,10 @@
 package com.springcloud.controller;
 
 
-
-
 import com.springcloud.service.PaymentService;
 import entities.CommonResult;
 import entities.Payment;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
